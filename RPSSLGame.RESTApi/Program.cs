@@ -1,10 +1,7 @@
-using MediatR;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.Extensions.Options;
 using PSSLGame.Domain.Configuration;
-using RPSSLGame.Application.Commands;
-using RPSSLGame.Application.Queries;
 using RPSSLGame.DI;
 using RPSSLGame.RESTApi;
 

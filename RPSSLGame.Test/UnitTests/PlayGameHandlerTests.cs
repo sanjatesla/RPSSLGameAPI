@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Moq;
+using PSSLGame.Domain.Common;
 using PSSLGame.Domain.Entities;
 using PSSLGame.Domain.Repositories;
 using PSSLGame.Domain.Services;
@@ -19,7 +20,7 @@ public class PlayGameHandlerTests
     {
         choiceGeneratorMock = new Mock<IChoiceGenerator>();
         choiceGeneratorMock.Setup(x => x.GenerateChoice())
-            .Returns(Task.FromResult(Choice.Lizard));
+            .Returns(Task.FromResult(Choices.Lizard));
 
         scoreboardRepoMock = new Mock<IScoreboardRepository>();
         scoreboardRepoMock.Setup(x => x.GetTopTenScores(It.IsAny<CancellationToken>()))
@@ -28,16 +29,16 @@ public class PlayGameHandlerTests
         _handler = new PlayGame.Handler(choiceGeneratorMock.Object, scoreboardRepoMock.Object);
     }
 
-    [TestCase(Choice.Rock, Choice.Lizard, Results.Win)]
-    [TestCase(Choice.Rock, Choice.Scissors, Results.Win)]
-    [TestCase(Choice.Rock, Choice.Paper, Results.Lose)]
-    [TestCase(Choice.Rock, Choice.Spock, Results.Lose)]
-    [TestCase(Choice.Rock, Choice.Rock, Results.Tie)]
-    [TestCase(Choice.Lizard, Choice.Paper, Results.Win)]
-    [TestCase(Choice.Paper, Choice.Scissors, Results.Lose)]
-    [TestCase(Choice.Spock, Choice.Scissors, Results.Win)]
-    [TestCase(Choice.Spock, Choice.Lizard, Results.Lose)]
-    public async Task PlayGame_ValidChoice_ShouldReturnOk(Choice playerChoice, Choice computerChoice, Results expectedResult)
+    [TestCase(Choices.Rock, Choices.Lizard, Results.Win)]
+    [TestCase(Choices.Rock, Choices.Scissors, Results.Win)]
+    [TestCase(Choices.Rock, Choices.Paper, Results.Lose)]
+    [TestCase(Choices.Rock, Choices.Spock, Results.Lose)]
+    [TestCase(Choices.Rock, Choices.Rock, Results.Tie)]
+    [TestCase(Choices.Lizard, Choices.Paper, Results.Win)]
+    [TestCase(Choices.Paper, Choices.Scissors, Results.Lose)]
+    [TestCase(Choices.Spock, Choices.Scissors, Results.Win)]
+    [TestCase(Choices.Spock, Choices.Lizard, Results.Lose)]
+    public async Task PlayGame_ValidChoice_ShouldReturnOk(Choices playerChoice, Choices computerChoice, Results expectedResult)
     {
         // Arrange
         choiceGeneratorMock.Setup(x => x.GenerateChoice())

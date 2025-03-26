@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Moq;
+using PSSLGame.Domain.Common;
 using PSSLGame.Domain.Entities;
 using PSSLGame.Domain.Repositories;
 using PSSLGame.Domain.Services;
@@ -23,16 +24,16 @@ public class PlayGameMultiplePlayersHandlerTests
         _handler = new PlayGameMultiplePlayers.Handler(scoreboardRepoMock.Object);
     }
 
-    [TestCase(Choice.Rock, Choice.Lizard, Results.Win)]
-    [TestCase(Choice.Rock, Choice.Scissors, Results.Win)]
-    [TestCase(Choice.Rock, Choice.Paper, Results.Lose)]
-    [TestCase(Choice.Rock, Choice.Spock, Results.Lose)]
-    [TestCase(Choice.Rock, Choice.Rock, Results.Tie)]
-    [TestCase(Choice.Lizard, Choice.Paper, Results.Win)]
-    [TestCase(Choice.Paper, Choice.Scissors, Results.Lose)]
-    [TestCase(Choice.Spock, Choice.Scissors, Results.Win)]
-    [TestCase(Choice.Spock, Choice.Lizard, Results.Lose)]
-    public async Task PlayGameMultiplePlayers_2Players_Valid_ShouldReturnOk(Choice player1Choice, Choice player2Choice, Results expectedResult)
+    [TestCase(Choices.Rock, Choices.Lizard, Results.Win)]
+    [TestCase(Choices.Rock, Choices.Scissors, Results.Win)]
+    [TestCase(Choices.Rock, Choices.Paper, Results.Lose)]
+    [TestCase(Choices.Rock, Choices.Spock, Results.Lose)]
+    [TestCase(Choices.Rock, Choices.Rock, Results.Tie)]
+    [TestCase(Choices.Lizard, Choices.Paper, Results.Win)]
+    [TestCase(Choices.Paper, Choices.Scissors, Results.Lose)]
+    [TestCase(Choices.Spock, Choices.Scissors, Results.Win)]
+    [TestCase(Choices.Spock, Choices.Lizard, Results.Lose)]
+    public async Task PlayGameMultiplePlayers_2Players_Valid_ShouldReturnOk(Choices player1Choice, Choices player2Choice, Results expectedResult)
     {
         // Arrange
         var players = new List<PlayGameMultiplePlayers.Player>()
@@ -63,12 +64,12 @@ public class PlayGameMultiplePlayersHandlerTests
             response.Winners.Should().BeEmpty();
     }
 
-    [TestCase(Choice.Rock, Choice.Lizard, Choice.Scissors, 1)]
-    [TestCase(Choice.Rock, Choice.Paper, Choice.Spock, 2)]
-    [TestCase(Choice.Scissors, Choice.Rock, Choice.Spock, 3)]
-    [TestCase(Choice.Scissors, Choice.Rock, Choice.Paper, 0)]
-    public async Task PlayGameMultiplePlayers_3Players_Valid_ShouldReturnOk(Choice player1Choice,
-        Choice player2Choice, Choice player3Choice, int winnerPlayer)
+    [TestCase(Choices.Rock, Choices.Lizard, Choices.Scissors, 1)]
+    [TestCase(Choices.Rock, Choices.Paper, Choices.Spock, 2)]
+    [TestCase(Choices.Scissors, Choices.Rock, Choices.Spock, 3)]
+    [TestCase(Choices.Scissors, Choices.Rock, Choices.Paper, 0)]
+    public async Task PlayGameMultiplePlayers_3Players_Valid_ShouldReturnOk(Choices player1Choice,
+        Choices player2Choice, Choices player3Choice, int winnerPlayer)
     {
         // Arrange
         var players = new List<PlayGameMultiplePlayers.Player>()

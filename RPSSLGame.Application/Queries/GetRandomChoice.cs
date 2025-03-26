@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using PSSLGame.Domain.Entities;
+using PSSLGame.Domain.Common;
 using PSSLGame.Domain.Services;
 using static RPSSLGame.Application.Commands.PlayGame;
 

@@ -3,6 +3,7 @@ using RPSSLGame.Test.FunctionalTests.Base;
 using FluentAssertions;
 using System.Net;
 using RPSSLGame.Application.Queries;
+using PSSLGame.Domain.Common;
 
 namespace RPSSLGame.Test.FunctionalTests;
 
@@ -15,7 +16,7 @@ public class PlayGameMultiplePlayersTests : TestBase
         // Arrange
         var players = new List<PlayGameMultiplePlayers.Player>()
         {
-            new PlayGameMultiplePlayers.Player("player1", PSSLGame.Domain.Entities.Choice.Scissors)
+            new PlayGameMultiplePlayers.Player("player1", Choices.Scissors)
         };
 
         var command = new PlayGameMultiplePlayers.MultiplePlayersCommand(players);
@@ -52,8 +53,8 @@ public class PlayGameMultiplePlayersTests : TestBase
         // Arrange
         var players = new List<PlayGameMultiplePlayers.Player>()
         {
-            new PlayGameMultiplePlayers.Player("player1", PSSLGame.Domain.Entities.Choice.Scissors),
-            new PlayGameMultiplePlayers.Player("", PSSLGame.Domain.Entities.Choice.Lizard),
+            new PlayGameMultiplePlayers.Player("player1", Choices.Scissors),
+            new PlayGameMultiplePlayers.Player("", Choices.Lizard),
         };
 
         var command = new PlayGameMultiplePlayers.MultiplePlayersCommand(players);
@@ -73,9 +74,9 @@ public class PlayGameMultiplePlayersTests : TestBase
         // Arrange
         var players = new List<PlayGameMultiplePlayers.Player>()
         {
-            new PlayGameMultiplePlayers.Player("player1", PSSLGame.Domain.Entities.Choice.Rock),
-            new PlayGameMultiplePlayers.Player("player2", PSSLGame.Domain.Entities.Choice.Scissors),
-            new PlayGameMultiplePlayers.Player("player3", PSSLGame.Domain.Entities.Choice.Lizard),
+            new PlayGameMultiplePlayers.Player("player1", Choices.Rock),
+            new PlayGameMultiplePlayers.Player("player2", Choices.Scissors),
+            new PlayGameMultiplePlayers.Player("player3", Choices.Lizard),
         };
 
         var command = new PlayGameMultiplePlayers.MultiplePlayersCommand(players);

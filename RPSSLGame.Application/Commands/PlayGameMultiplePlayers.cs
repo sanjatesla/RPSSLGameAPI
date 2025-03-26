@@ -1,10 +1,8 @@
 ﻿using FluentValidation;
 using MediatR;
+using PSSLGame.Domain.Common;
 using PSSLGame.Domain.Entities;
 using PSSLGame.Domain.Repositories;
-using PSSLGame.Domain.Services;
-using System.Reflection;
-using static RPSSLGame.Application.Commands.PlayGameMultiplePlayers;
 
 namespace RPSSLGame.Application.Commands;
 
@@ -13,7 +11,7 @@ public static class PlayGameMultiplePlayers
     #region Command
 
     public record MultiplePlayersCommand(List<Player> Players) : IRequest<MultiplePlayersResponse>;
-    public record Player(string Name, Choice Choice);
+    public record Player(string Name, Choices Choice);
 
     #endregion
 
@@ -53,7 +51,7 @@ public static class PlayGameMultiplePlayers
             foreach (var player in request.Players)
             {
                 var wins = request.Players
-                    .Where(otherPlayer => new GameRound((Choice)player.Choice, (Choice)otherPlayer.Choice).Result is Results.Win)
+                    .Where(otherPlayer => new GameRound(player.Choice, otherPlayer.Choice).Result is Results.Win)
                     .ToList();
 
                 if (wins.Count == request.Players.Count - 1)

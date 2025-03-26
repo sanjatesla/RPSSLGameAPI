@@ -1,8 +1,9 @@
-﻿using PSSLGame.Domain.Entities;
+﻿using PSSLGame.Domain.Common;
+using PSSLGame.Domain.Entities;
 
 namespace PSSLGame.Domain.Services;
 
 public interface IChoiceGenerator
 {
-    Task<Choice> GenerateChoice();
+    Task<Choices> GenerateChoice();
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using PSSLGame.Domain.Common;
 using PSSLGame.Domain.Configuration;
 using PSSLGame.Domain.Entities;
 using PSSLGame.Domain.Services;
@@ -19,9 +20,9 @@ public class ChoiceGenerator : IChoiceGenerator
         _settings = settings;
     }
 
-    public async Task<Choice> GenerateChoice()
+    public async Task<Choices> GenerateChoice()
     {
-        Choice? choice = null;
+        Choices? choice = null;
         // Using this external service for getting random number is for showcase purpose
         RandomChoiceResponse? response = null;
         try
@@ -33,13 +34,13 @@ public class ChoiceGenerator : IChoiceGenerator
             _logger.LogInformation("Error getting random number from url {0}: {1}", _settings.RandomNumberUrl, ex.Message);
         }
         var randomNumber = response?.random_number;
-        if (randomNumber != null && randomNumber <= Enum.GetValues<Choice>().Length)
-            choice = (Choice)randomNumber;
+        if (randomNumber != null && randomNumber <= Enum.GetValues<Choices>().Length)
+            choice = (Choices)randomNumber;
         else
         {
             var random = new Random();
-            randomNumber = random.Next(1, Enum.GetValues<Choice>().Length + 1);
-            choice = (Choice)randomNumber;
+            randomNumber = random.Next(1, Enum.GetValues<Choices>().Length + 1);
+            choice = (Choices)randomNumber;
         }
         return choice.Value;
     }

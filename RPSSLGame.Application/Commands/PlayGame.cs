@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using PSSLGame.Domain.Common;
 using PSSLGame.Domain.Entities;
 using PSSLGame.Domain.Repositories;
 using PSSLGame.Domain.Services;
@@ -10,7 +11,7 @@ public static class PlayGame
 {
     #region Command
 
-    public record Command(Choice PlayerChoice) : IRequest<Response>;
+    public record Command(Choices PlayerChoice) : IRequest<Response>;
 
     #endregion
 
@@ -47,17 +48,19 @@ public static class PlayGame
             GameRound gameRound = new(request.PlayerChoice, computerChoice);
             var result = gameRound.Result;
 
-            if (result is Results.Win)
+            var winner = result switch
             {
-                await _scoreboardRepository.AddScore(PLAYER, cancellationToken);
-            }
-            else if (result is Results.Lose)
+                Results.Win => PLAYER,
+                Results.Lose => COMPUTER,
+                _ => ""
+            };
+            if (!string.IsNullOrEmpty(winner))
             {
-                await _scoreboardRepository.AddScore(COMPUTER, cancellationToken);
+                await _scoreboardRepository.AddScore(winner, cancellationToken);
             }
             Response response = new()
             {
-                Player = gameRound.Player1Choice.ToString(),
+                Player = request.PlayerChoice.ToString(),
                 Computer = computerChoice.ToString(),
                 Result = result.ToString()
             };
@@ -71,9 +74,9 @@ public static class PlayGame
 
     public record Response
     {
-        public string Player { get; set; }
-        public string Computer { get; set; }
-        public string Result { get; set; }
+        public string Player { get; set; } = "";
+        public string Computer { get; set; } = "";
+        public string Result { get; set; } = "";
     }
 
     #endregion

@@ -2,9 +2,8 @@
 using RPSSLGame.Test.FunctionalTests.Base;
 using FluentAssertions;
 using System.Net;
-using System.Text;
-using System.Text.Json;
 using RPSSLGame.Application.Queries;
+using PSSLGame.Domain.Common;
 
 namespace RPSSLGame.Test.FunctionalTests;
 
@@ -16,9 +15,9 @@ public class ScoreboardTests : TestBase
     {
         var players = new List<PlayGameMultiplePlayers.Player>()
             {
-                new PlayGameMultiplePlayers.Player($"winner1", PSSLGame.Domain.Entities.Choice.Rock),
-                new PlayGameMultiplePlayers.Player("player2", PSSLGame.Domain.Entities.Choice.Scissors),
-                new PlayGameMultiplePlayers.Player("player3", PSSLGame.Domain.Entities.Choice.Lizard),
+                new PlayGameMultiplePlayers.Player($"winner1", Choices.Rock),
+                new PlayGameMultiplePlayers.Player("player2", Choices.Scissors),
+                new PlayGameMultiplePlayers.Player("player3", Choices.Lizard),
             };
         var command = new PlayGameMultiplePlayers.MultiplePlayersCommand(players);
         // play game
@@ -28,9 +27,9 @@ public class ScoreboardTests : TestBase
         {
             players = new List<PlayGameMultiplePlayers.Player>()
             {
-                new PlayGameMultiplePlayers.Player($"winner{i}", PSSLGame.Domain.Entities.Choice.Rock),
-                new PlayGameMultiplePlayers.Player("player2", PSSLGame.Domain.Entities.Choice.Scissors),
-                new PlayGameMultiplePlayers.Player("player3", PSSLGame.Domain.Entities.Choice.Lizard),
+                new PlayGameMultiplePlayers.Player($"winner{i}", Choices.Rock),
+                new PlayGameMultiplePlayers.Player("player2", Choices.Scissors),
+                new PlayGameMultiplePlayers.Player("player3", Choices.Lizard),
             };
             command = new PlayGameMultiplePlayers.MultiplePlayersCommand(players);
             // play game

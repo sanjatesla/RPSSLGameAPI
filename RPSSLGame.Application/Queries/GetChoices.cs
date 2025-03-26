@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PSSLGame.Domain.Common;
 using PSSLGame.Domain.Entities;
 
 namespace RPSSLGame.Application.Queries;
@@ -19,7 +20,7 @@ public static class GetChoices
 
         public async Task<List<Response>> Handle(Query request, CancellationToken cancellationToken)
         {
-            return Enum.GetValues<Choice>().Select(x => new Response((int)x, x.ToString())).ToList();
+            return await Task.FromResult(Enum.GetValues<Choices>().Select(x => new Response((int)x, x.ToString())).ToList());
         }
     }
 
