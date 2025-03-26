@@ -1,11 +1,10 @@
 ﻿using RPSSLGame.Application.Commands;
-using RPSSLGame.Test.InterationTests.Base;
+using RPSSLGame.Test.FunctionalTests.Base;
 using FluentAssertions;
 using System.Net;
-using System.Text;
-using System.Text.Json;
+using RPSSLGame.Application.Queries;
 
-namespace RPSSLGame.Test.InterationTests;
+namespace RPSSLGame.Test.FunctionalTests;
 
 [TestFixture]
 public class PlayGameMultiplePlayersTests : TestBase
@@ -20,11 +19,9 @@ public class PlayGameMultiplePlayersTests : TestBase
         };
 
         var command = new PlayGameMultiplePlayers.MultiplePlayersCommand(players);
-        var json = JsonSerializer.Serialize(command);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
 
         // Act
-        var response = await Client.PostAsync("/play-multiple", content);
+        var response = await Client.PostAsync("/play-multiple", GetStringContent(command));
         var result = await response.Content.ReadAsStringAsync();
         //Assert
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -39,11 +36,9 @@ public class PlayGameMultiplePlayersTests : TestBase
         var players = new List<PlayGameMultiplePlayers.Player>();
 
         var command = new PlayGameMultiplePlayers.MultiplePlayersCommand(players);
-        var json = JsonSerializer.Serialize(command);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
 
         // Act
-        var response = await Client.PostAsync("/play-multiple", content);
+        var response = await Client.PostAsync("/play-multiple", GetStringContent(command));
         var result = await response.Content.ReadAsStringAsync();
         //Assert
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -62,11 +57,9 @@ public class PlayGameMultiplePlayersTests : TestBase
         };
 
         var command = new PlayGameMultiplePlayers.MultiplePlayersCommand(players);
-        var json = JsonSerializer.Serialize(command);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
 
         // Act
-        var response = await Client.PostAsync("/play-multiple", content);
+        var response = await Client.PostAsync("/play-multiple", GetStringContent(command));
         var result = await response.Content.ReadAsStringAsync();
         //Assert
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -86,24 +79,23 @@ public class PlayGameMultiplePlayersTests : TestBase
         };
 
         var command = new PlayGameMultiplePlayers.MultiplePlayersCommand(players);
-        var json = JsonSerializer.Serialize(command);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
 
         // Act
         // play game
-        var response = await Client.PostAsync("/play-multiple", content);
-        var result = await response.Content.ReadAsStringAsync();
+        var response = await Client.PostAsync("/play-multiple", GetStringContent(command));
+        var result = await ConvertResponse<PlayGameMultiplePlayers.MultiplePlayersResponse>(response);
         // get scoreboard
         var scoreboardResponse = await Client.GetAsync("scoreboard");
-        var resultScoreboard = await scoreboardResponse.Content.ReadAsStringAsync();
+        var resultScoreboard = await ConvertResponse<List<GetTopTenScoreboard.Response>>(scoreboardResponse);
 
         //Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        result.Should().NotBeNullOrEmpty();
-        result.Should().Contain("player1");
+        result.Should().NotBeNull();
+        result.Winners.Should().NotBeNullOrEmpty();
+        result.Winners.FirstOrDefault().Name.Should().Be("player1");
 
         scoreboardResponse.StatusCode.Should().Be(HttpStatusCode.OK);
         resultScoreboard.Should().NotBeNullOrEmpty();
-        resultScoreboard.Should().Contain("player1");
+        resultScoreboard.FirstOrDefault().Player.Should().Be("player1");
     }
 }

@@ -11,16 +11,11 @@ namespace RPSSLGame.Test.UnitTests;
 public class PlayGameMultiplePlayersHandlerTests
 {
     private PlayGameMultiplePlayers.Handler _handler;
-    private Mock<IChoiceGenerator> choiceGeneratorMock;
     private Mock<IScoreboardRepository> scoreboardRepoMock;
 
     [SetUp]
     public void Setup()
     {
-        choiceGeneratorMock = new Mock<IChoiceGenerator>();
-        choiceGeneratorMock.Setup(x => x.GenerateChoice())
-            .Returns(Task.FromResult(Choice.Lizard));
-
         scoreboardRepoMock = new Mock<IScoreboardRepository>();
         scoreboardRepoMock.Setup(x => x.GetTopTenScores(It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(new List<ScoreEntity>()));
