@@ -98,8 +98,8 @@ The application uses an `appsettings.json` file for configuration.
 - **Endpoint**: `/reset-scoreboard`
 - **Method**: `POST`
 - **Description**: Reset the scoreboard.
-- 
-  ### Get Choices
+
+### Get Choices
 
 - **Endpoint**: `/choices`
 - **Method**: `GET`
@@ -107,7 +107,7 @@ The application uses an `appsettings.json` file for configuration.
 - **Response**:
   [ { "id": 1, "name": "Rock" }, { "id": 2, "name": "Paper" }, ... ]
 
-  ### Get Random Choice
+### Get Random Choice
 
 - **Endpoint**: `/choice`
 - **Method**: `GET`
