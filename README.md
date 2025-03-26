@@ -24,6 +24,14 @@ The project uses the Command Query Responsibility Segregation (CQRS) pattern to 
 ### In-Memory Storage
 
 For simplicity, an in-memory dictionary is used as the storage for the scoreboard. This can be replaced with a more persistent storage solution if needed.
+  
+## Global Exception Handling
+
+The application has global exception handling configured to handle validation errors and other exceptions. It returns appropriate HTTP status codes and error messages.
+
+## Swagger
+
+Swagger is enabled for API documentation. You can access the Swagger UI at `/swagger`.
 
 ## Prerequisites
 
@@ -106,14 +114,5 @@ The application uses an `appsettings.json` file for configuration.
 - **Description**: Get randomly generated choice.
 - **Response**:
   { "id": 1, "name": "Rock" }
-  
-## Global Exception Handling
-
-The application has global exception handling configured to handle validation errors and other exceptions. It returns appropriate HTTP status codes and error messages.
-
-## Swagger
-
-Swagger is enabled for API documentation. You can access the Swagger UI at `/swagger`.
-
 
 
