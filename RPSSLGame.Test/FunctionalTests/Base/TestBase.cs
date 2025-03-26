@@ -10,6 +10,7 @@ public class TestBase
 {
     protected HttpClient Client { get; private set; }
     private WebApplicationFactory<Program> _factory;
+    // Options for deserializing JSON
     protected JsonSerializerOptions _deserializerOptions = new JsonSerializerOptions
     {
         PropertyNameCaseInsensitive = true, // Ignore case when matching property names
@@ -17,11 +18,14 @@ public class TestBase
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, // Ignore null values when writing JSON
         Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) } // Handle enum values as strings
     };
+
+    // Get string content from command
     protected StringContent? GetStringContent<T>(T command) 
     {
         return new StringContent(JsonSerializer.Serialize(command), Encoding.UTF8, "application/json");
     }
 
+    // Convert response to object
     protected async Task<T> ConvertResponse<T>(HttpResponseMessage response)
     {
         var responseString = await response.Content.ReadAsStringAsync();
@@ -32,6 +36,7 @@ public class TestBase
     public void OneTimeSetUp()
     {
         _factory = new WebApplicationFactory<Program>();
+        // Create a new HttpClient
         Client = _factory.CreateClient();
     }
 

@@ -22,6 +22,7 @@ public static class ResetScoreboard
 
         public async Task<ResetScoreboardResponse> Handle(ResetScoreboardCommand request, CancellationToken cancellationToken)
         {
+            // reset scoreboard
             await _scoreboardRepository.ResetScoreboard(cancellationToken);
             return new ResetScoreboardResponse();
         }

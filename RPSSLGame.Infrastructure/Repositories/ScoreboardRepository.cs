@@ -12,11 +12,16 @@ public class ScoreboardRepository : IScoreboardRepository
         _scoreboardInMemory = scoreboardInMemory;
     }
 
+    /// <summary>Adds the score.</summary>
+    /// <param name="player">The player.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
     public async Task AddScore(string player, CancellationToken cancellationToken)
     {
         await _scoreboardInMemory.AddScore(player);
     }
 
+    /// <summary>Gets the top ten scores.</summary>
+    /// <param name="cancellationToken">The cancellation token.</param>
     public async Task<List<ScoreEntity>> GetTopTenScores(CancellationToken cancellationToken)
     {
         var scores = (await _scoreboardInMemory.GetScoreboard())
@@ -27,6 +32,8 @@ public class ScoreboardRepository : IScoreboardRepository
         return scores.ToList();
     }
 
+    /// <summary>Resets the scoreboard.</summary>
+    /// <param name="cancellationToken">The cancellation token.</param>
     public async Task ResetScoreboard(CancellationToken cancellationToken)
     {
         await _scoreboardInMemory.ResetScoreboard();

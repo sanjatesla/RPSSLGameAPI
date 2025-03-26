@@ -50,10 +50,12 @@ public static class PlayGameMultiplePlayers
             var winners = new List<Player>();
             foreach (var player in request.Players)
             {
+                // get all players that player wins against
                 var wins = request.Players
                     .Where(otherPlayer => new GameRound(player.Choice, otherPlayer.Choice).Result is Results.Win)
                     .ToList();
 
+                // if player wins against all other players, add to winners list
                 if (wins.Count == request.Players.Count - 1)
                 {
                     winners.Add(player);

@@ -3,6 +3,9 @@
 public class ScoreboardInMemory
 {
     private readonly Dictionary<string, int> Scoreboard = new();
+
+    /// <summary>Adds the score.</summary>
+    /// <param name="playerName">Name of the player.</param>
     public async Task AddScore(string playerName)
     {
         if (Scoreboard.ContainsKey(playerName))
@@ -14,6 +17,7 @@ public class ScoreboardInMemory
 
     public async Task<Dictionary<string, int>> GetScoreboard() => await Task.FromResult(Scoreboard);
 
+    /// <summary>Resets the scoreboard.</summary>
     public async Task ResetScoreboard()
     {
         Scoreboard.Clear();

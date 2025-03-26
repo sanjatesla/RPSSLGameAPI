@@ -15,6 +15,7 @@ public static class SerilogConfig
         var appName = AppDomain.CurrentDomain.FriendlyName.Split('.').FirstOrDefault() ?? "App";
         var env = Environment.GetEnvironmentVariable(_envVar) ?? "N/A";
 
+        // Set the minimum level of log events. For the appsettings.json file, the default is Information.
         var config = new LoggerConfiguration()
             .Enrich.FromLogContext()
             .Enrich.WithMachineName()
@@ -23,10 +24,12 @@ public static class SerilogConfig
             .WriteTo.Debug()
             .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {appName} {env}] {Message:lj}{NewLine}{Exception}");
 
+        // log to file
         var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + string.Format(logFolderPath, appName, env);
 
         config = config.WriteTo.File(path, rollingInterval: RollingInterval.Day, retainedFileCountLimit: 10);
 
+        // enrich logs with environment name
         config = config.Enrich.WithProperty(envPropertyName, environment)
             .ReadFrom.Configuration(configuration);
 

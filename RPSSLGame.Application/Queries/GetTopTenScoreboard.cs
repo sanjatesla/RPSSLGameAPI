@@ -23,6 +23,7 @@ public static class GetTopTenScoreboard
 
         public async Task<List<Response>> Handle(Query request, CancellationToken cancellationToken)
         {
+            // get top ten scores
             var scoreboard = await _scoreboardRepository.GetTopTenScores(cancellationToken);
             return scoreboard.Select(x => new Response(x.Player, x.Score)).ToList();
         }

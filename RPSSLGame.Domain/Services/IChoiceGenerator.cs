@@ -5,5 +5,6 @@ namespace PSSLGame.Domain.Services;
 
 public interface IChoiceGenerator
 {
+    /// <summary>Generates random choice.</summary>
     Task<Choices> GenerateChoice();
 }

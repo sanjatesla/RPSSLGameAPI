@@ -9,7 +9,9 @@ public static class ServiceCollectionExtension
 {
     public static IServiceCollection RegisterApplicationServices(this IServiceCollection services)
     {
+        // MediatR setup — scans and registers handlers automatically
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+
         // FluentValidation setup — scans and registers validators automatically
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

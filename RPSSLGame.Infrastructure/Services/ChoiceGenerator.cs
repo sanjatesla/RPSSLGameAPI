@@ -20,24 +20,30 @@ public class ChoiceGenerator : IChoiceGenerator
         _settings = settings;
     }
 
+    /// <summary>Generates random choice.</summary>
     public async Task<Choices> GenerateChoice()
     {
         Choices? choice = null;
+
         // Using this external service for getting random number is for showcase purpose
         RandomChoiceResponse? response = null;
         try
         {
+            // Get random number from external service
             response = await _httpClient.GetFromJsonAsync<RandomChoiceResponse>(_settings.RandomNumberUrl);
         }
         catch (Exception ex)
         {
+            // Log error
             _logger.LogInformation("Error getting random number from url {0}: {1}", _settings.RandomNumberUrl, ex.Message);
         }
         var randomNumber = response?.random_number;
+        // If random number is valid, use it to generate choice
         if (randomNumber != null && randomNumber <= Enum.GetValues<Choices>().Length)
             choice = (Choices)randomNumber;
         else
         {
+            // Generate random number using local random generator
             var random = new Random();
             randomNumber = random.Next(1, Enum.GetValues<Choices>().Length + 1);
             choice = (Choices)randomNumber;

@@ -19,8 +19,10 @@ public static class IServiceCollectionExtension
 
     public static IServiceCollection RegisterInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
+        // Register Serilog
         services.AddSerilog(configuration);
 
+        // Register services
         services.AddHttpClient<IChoiceGenerator, ChoiceGenerator>();
         services.AddTransient<IScoreboardRepository, ScoreboardRepository>();
         services.AddSingleton<ScoreboardInMemory>();

@@ -43,17 +43,19 @@ public static class PlayGame
 
         public async Task<Response> Handle(Command request, CancellationToken cancellationToken)
         {
+            // generate computer choice
             var computerChoice = await _choiceGenerator.GenerateChoice();
 
             GameRound gameRound = new(request.PlayerChoice, computerChoice);
             var result = gameRound.Result;
-
+            
             var winner = result switch
             {
                 Results.Win => PLAYER,
                 Results.Lose => COMPUTER,
                 _ => ""
             };
+            // add score to scoreboard if not a tie
             if (!string.IsNullOrEmpty(winner))
             {
                 await _scoreboardRepository.AddScore(winner, cancellationToken);

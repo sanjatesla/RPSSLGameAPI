@@ -20,6 +20,7 @@ public static class GetChoices
 
         public async Task<List<Response>> Handle(Query request, CancellationToken cancellationToken)
         {
+            // get all choices
             return await Task.FromResult(Enum.GetValues<Choices>().Select(x => new Response((int)x, x.ToString())).ToList());
         }
     }

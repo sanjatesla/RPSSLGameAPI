@@ -25,6 +25,7 @@ public static class GetRandomChoice
 
         public async Task<Response> Handle(Query request, CancellationToken cancellationToken)
         {
+            // generate random choice
             var randomChoice = await _choiceGenerator.GenerateChoice();
             return new Response((int)randomChoice, randomChoice.ToString());
         }
