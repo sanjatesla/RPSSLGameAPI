@@ -1,0 +1,6 @@
+@RPSSLGame.RESTApi_HostAddress = http://localhost:5047
+
+GET {{RPSSLGame.RESTApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

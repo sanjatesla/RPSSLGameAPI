@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPSSLGame.Infrastructure", "RPSSLGame.Infrastructure\RPSSLGame.Infrastructure.csproj", "{8110C216-7329-49F8-A29D-6BA63B450653}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPSSLGame.Application", "RPSSLGame.Application\RPSSLGame.Application.csproj", "{BB931545-6450-4E95-BBEF-01F6F9CD5F68}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPSSLGame.Test", "RPSSLGame.Test\RPSSLGame.Test.csproj", "{1B84413E-632D-439A-815B-A490C37CEBE1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPSSLGame.DI", "RPSSLGame.DI\RPSSLGame.DI.csproj", "{AF83B7C8-3789-442C-A4BB-37BF014C71E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSSLGame.Domain", "RPSSLGame.Domain\PSSLGame.Domain.csproj", "{0BA89A17-B3C9-464E-9659-11C5A5F75507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPSSLGame.RESTApi", "RPSSLGame.RESTApi\RPSSLGame.RESTApi.csproj", "{C18418C6-C384-4715-9E8D-3138AEE8415D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8110C216-7329-49F8-A29D-6BA63B450653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8110C216-7329-49F8-A29D-6BA63B450653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8110C216-7329-49F8-A29D-6BA63B450653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8110C216-7329-49F8-A29D-6BA63B450653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB931545-6450-4E95-BBEF-01F6F9CD5F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB931545-6450-4E95-BBEF-01F6F9CD5F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB931545-6450-4E95-BBEF-01F6F9CD5F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB931545-6450-4E95-BBEF-01F6F9CD5F68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B84413E-632D-439A-815B-A490C37CEBE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B84413E-632D-439A-815B-A490C37CEBE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B84413E-632D-439A-815B-A490C37CEBE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B84413E-632D-439A-815B-A490C37CEBE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF83B7C8-3789-442C-A4BB-37BF014C71E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF83B7C8-3789-442C-A4BB-37BF014C71E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF83B7C8-3789-442C-A4BB-37BF014C71E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF83B7C8-3789-442C-A4BB-37BF014C71E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BA89A17-B3C9-464E-9659-11C5A5F75507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BA89A17-B3C9-464E-9659-11C5A5F75507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BA89A17-B3C9-464E-9659-11C5A5F75507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BA89A17-B3C9-464E-9659-11C5A5F75507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C18418C6-C384-4715-9E8D-3138AEE8415D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C18418C6-C384-4715-9E8D-3138AEE8415D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C18418C6-C384-4715-9E8D-3138AEE8415D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C18418C6-C384-4715-9E8D-3138AEE8415D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B60286A-B70B-471D-B762-50E4C01E8284}
+	EndGlobalSection
+EndGlobal
